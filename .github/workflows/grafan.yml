@@ -46,10 +46,10 @@ jobs:
        
       - name: Azure Login
         uses: Azure/login@v2.3.0
-          with:
-            client-id: 20906787-3b17-4ab3-bcc9-e3be7eb3d4a5
-            tenant-id: fd2d14ef-5afe-49fc-90d8-c542641e9eae
-            subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
+        with:
+          client-id: 20906787-3b17-4ab3-bcc9-e3be7eb3d4a5
+          tenant-id: fd2d14ef-5afe-49fc-90d8-c542641e9eae
+          subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
       
       - name: terraform init
         run: terraform init
