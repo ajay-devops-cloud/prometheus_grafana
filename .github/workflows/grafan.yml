@@ -11,7 +11,7 @@ permissions:
   contents: read
  
 jobs:
-  grafana:
+  build:
     name: build
     runs-on: self-hosted
     steps:
@@ -25,7 +25,7 @@ jobs:
           subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
       - name: terraform init
         run: terraform init
-        working directory: environment/dev
+        working-directory: environment/dev
       - name: terraform init
         run: terraform init
         working-directory: environment/dev
@@ -33,30 +33,30 @@ jobs:
       - name: terraform plan
         run: terraform plan 
         working-directory: environment/dev
+
+  deploy:
+    name: terraform apply
+    runs-on: self-hosted
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: build
+    environment: dev
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v5.0.0
+     
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: 20906787-3b17-4ab3-bcc9-e3be7eb3d4a5
+        tenant-id: fd2d14ef-5afe-49fc-90d8-c542641e9eae
+        subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
     
-    deploy:
-      name: terraform apply
-      runs-on: self-hosted
-      if: ${{ github.ref == 'refs/heads/main' }}
-      needs: build
-      environment: dev
-      steps: 
-      - name: Checkout
-        uses: actions/checkout@v5.0.0
-       
-      - name: Azure Login
-        uses: Azure/login@v2.3.0
-        with:
-          client-id: 20906787-3b17-4ab3-bcc9-e3be7eb3d4a5
-          tenant-id: fd2d14ef-5afe-49fc-90d8-c542641e9eae
-          subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
-      
-      - name: terraform init
-        run: terraform init
-        working-directory: environment/dev    
-      - name: terraform apply 
-        run: terraform apply --auto-approve
-        working-directory: environment/dev
+    - name: terraform init
+      run: terraform init
+      working-directory: environment/dev    
+    - name: terraform apply 
+      run: terraform apply --auto-approve
+      working-directory: environment/dev
   
   
 
