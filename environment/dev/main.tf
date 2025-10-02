@@ -94,6 +94,7 @@ module "virtualmachene2" {
     image_version = "latest"
 }
 module "nsg" {
+  depends_on = [ module.virtualmachene ]
   source = "../../module/azurerm_nsg"
   nic_name = "mynic"
   location = "central india"
@@ -101,6 +102,7 @@ module "nsg" {
   nsg_name = "servervmnsg"
 }
 module "nsg1" {
+  depends_on = [ module.virtualmachene1 ]
   source = "../../module/azurerm_nsg"
   nic_name = "mynic1"
   location = "central india"
@@ -108,6 +110,7 @@ module "nsg1" {
   nsg_name = "dev2vmnsg"
 }
 module "nsg2" {
+  depends_on = [ module.virtualmachene2 ]
   source = "../../module/azurerm_nsg"
   nic_name = "mynic2"
   location = "central india"
