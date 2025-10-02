@@ -1,10 +1,10 @@
 terraform {
-    # backend "azurerm" {
-    #   resource_group_name = "rg-it"
-    #   storage_account_name = "itsolution2"
-    #   container_name = "nextlevelcontainer"
-    #   key = "myt.tfstate"
-    # }
+    backend "azurerm" {
+      resource_group_name = "rg-it"
+      storage_account_name = "itsolution3"
+      container_name = "nextlevelcontainer"
+      key = "myt.tfstate"
+    }
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
