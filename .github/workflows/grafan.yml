@@ -28,18 +28,17 @@ jobs:
         working-directory: environment\dev
       - name: terraform init
         run: terraform init
-        working-directory: C:\Users\DELL\DevOps\DevOps_Learning\github-agent\actions-runner\actions-runner-win-x64-2.328.0\_work\prometheus_grafana\prometheus_grafana\environment\dev
+        working-directory: environment\dev
   
       - name: terraform plan
         run: terraform plan 
-        working-directory: C:\Users\DELL\DevOps\DevOps_Learning\github-agent\actions-runner\actions-runner-win-x64-2.328.0\_work\prometheus_grafana\prometheus_grafana\environment\dev
+        working-directory: environment\dev
 
   deploy:
     name: terraform apply
     runs-on: self-hosted
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
-    environment: dev
     steps: 
     - name: Checkout
       uses: actions/checkout@v5.0.0
@@ -53,10 +52,10 @@ jobs:
     
     - name: terraform init
       run: terraform init
-      working-directory: C:\Users\DELL\DevOps\DevOps_Learning\github-agent\actions-runner\actions-runner-win-x64-2.328.0\_work\prometheus_grafana\prometheus_grafana\environment\dev   
+      working-directory: environment\dev   
     - name: terraform apply 
       run: terraform apply --auto-approve
-      working-directory: C:\Users\DELL\DevOps\DevOps_Learning\github-agent\actions-runner\actions-runner-win-x64-2.328.0\_work\prometheus_grafana\prometheus_grafana\environment\dev
+      working-directory: environment\dev
   
   
 
