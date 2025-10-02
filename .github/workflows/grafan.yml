@@ -25,14 +25,14 @@ jobs:
           subscription-id: b2f35947-820e-42de-96c7-8905c7b6a259
       - name: terraform init
         run: terraform init
-        working-directory: environment/dev
+        working-directory: environment\dev
       - name: terraform init
         run: terraform init
-        working-directory: environment/dev
+        working-directory: environment\dev
   
       - name: terraform plan
         run: terraform plan 
-        working-directory: environment/dev
+        working-directory: environment\dev
 
   deploy:
     name: terraform apply
@@ -53,10 +53,10 @@ jobs:
     
     - name: terraform init
       run: terraform init
-      working-directory: environment/dev    
+      working-directory: environment\dev   
     - name: terraform apply 
       run: terraform apply --auto-approve
-      working-directory: environment/dev
+      working-directory: environment\dev
   
   
 
